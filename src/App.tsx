@@ -11,29 +11,34 @@ const App = () => {
   const [loading, setLoading] = useState(true);
 
   const onMoveHandler = (item: any, id: number) => {
-    let nKan = kanban;
-    for (let i = 0; i < nKan.lists.length; i++) {
+    let newKanban = kanban;
+    for (let i = 0; i < newKanban.lists.length; i++) {
       const cards = kanban.lists[i];
       for (let k = 0; k < cards.list.length; k++) {
         const card = cards.list[k];
         if (card.id === item.card.id) {
           cards.list.splice(k, 1);
+          console.log(`remove ${card.id} from ${cards.name}`);
         }
       }
-    }
 
-    let newList = nKan.lists.find(cards => cards.id === id);
-    newList?.list.push(item.card);
-    setKanban(nKan);
+      if (cards.id === id) {
+        cards.list.push(item.card);
+        console.log(`add ${item.card.id} in ${cards.name}`);
+      }
+    }
+    setKanban(newKanban);
   }
 
-  const _fakeUserId = "simone98dm";
+  useEffect(() => {
+    console.log(kanban)
+  }, [kanban])
 
   useEffect(() => {
 
     setLoading(true);
 
-    getUserBoard(_fakeUserId)
+    getUserBoard()
       .then((result: any) => {
         setKanban(result);
       }).catch((err: string) => {
@@ -43,7 +48,6 @@ const App = () => {
       });
 
   }, [])
-
 
   return (<div className="App">
     {error !== "" && <h5>{error}</h5>}

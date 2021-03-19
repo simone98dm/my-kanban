@@ -2,7 +2,7 @@ import React from 'react';
 import './Badge.css';
 
 const Badge = (props: BadgeProps) => (
-  <div className="label label-primary Badge">
+  <div className="label label-rounded h6 label-primary Badge">
     {props.text}
   </div>
 );

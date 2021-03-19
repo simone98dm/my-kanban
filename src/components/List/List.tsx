@@ -16,7 +16,7 @@ const List = (props: ListProps) => {
   return (
     <div className="card List full-height" ref={drop}>
       <div className="card-header">
-        <div className="card-title label label-rounded label-primary">{props.cards.name}</div>
+        <div className="card-title label label-primary">{props.cards.name}</div>
       </div>
       <div className="card-body">
         <div className="columns">

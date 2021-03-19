@@ -10,7 +10,6 @@ const Card = (props: CardProps) => {
   const [{ opacity }, dragRef] = useDrag(() => ({
     type: ItemTypes.CARD,
     item: { card },
-    end: (item, monitor) => { },
     collect: (monitor) => ({
       opacity: monitor.isDragging() ? 0.5 : 1
     }),
@@ -19,7 +18,8 @@ const Card = (props: CardProps) => {
   return (
     <div className="card mt-2" ref={dragRef} style={{ opacity }}>
       <div className="card-header h4">
-        <Badge text={`${props.item.id}`} /> {props.item.title}
+        <Badge text={`${props.item.id}`} /> <br/> 
+        {props.item.title}
       </div>
     </div>
   );
