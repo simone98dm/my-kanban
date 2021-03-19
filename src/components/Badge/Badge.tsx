@@ -1,10 +1,15 @@
 import React from 'react';
 import './Badge.css';
 
-const Badge: React.FC = () => (
-  <div className="Badge">
-    Badge Component
+const Badge = (props: BadgeProps) => (
+  <div className="label label-primary Badge">
+    {props.text}
   </div>
 );
+
+interface BadgeProps {
+  text: string;
+  color?: string;
+}
 
 export default Badge;
