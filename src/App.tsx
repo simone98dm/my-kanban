@@ -1,45 +1,14 @@
 import { useEffect, useState } from 'react';
+import { getUserBoard } from './api/fakeBackend';
 import './App.css';
 import Kanban from './components/Kanban/Kanban';
-import { ICard } from './models/Card';
 import { IKanban } from './models/Kanban';
-import { IList } from './models/List';
 
 const App = () => {
+  const [kanban, setKanban] = useState({} as IKanban);
 
-  const [kanban, setKanban] = useState({
-    name: 'Main',
-    lists: [{
-      name: 'Todo',
-      list: [
-        { id: 1, title: 'Create layout', description: '' },
-        { id: 2, title: 'Create project', description: '' },
-        { id: 3, title: 'Deploy in heroku', description: '' },
-        { id: 4, title: 'Hack the world', description: '' }
-      ],
-      id: 0
-    }, {
-      name: 'Progress',
-      list: [
-        { id: 5, title: 'Completing this project', description: '' },
-        { id: 6, title: 'print "Hello, World!"', description: '' }
-      ],
-      id: 1
-    }, {
-      name: 'To Check',
-      list: [
-        { id: 7, title: 'The water on the gas', description: '' },
-        { id: 8, title: 'Did I close the main door?', description: '' }
-      ],
-      id: 2
-    }, {
-      name: 'Completed',
-      list: [
-        { id: 9, title: "Have an idea!", description: '' }
-      ],
-      id: 3
-    }]
-  })
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const onMoveHandler = (item: any, id: number) => {
     let nKan = kanban;
@@ -58,13 +27,27 @@ const App = () => {
     setKanban(nKan);
   }
 
+  const _fakeUserId = "simone98dm";
+
   useEffect(() => {
-    console.log(kanban);
-  }, [kanban])
+
+    setLoading(true);
+
+    getUserBoard(_fakeUserId)
+      .then((result: any) => {
+        setKanban(result);
+      }).catch((err: string) => {
+        setError(err);
+      }).finally(() => {
+        setLoading(true)
+      });
+
+  }, [])
 
 
   return (<div className="App">
-    <Kanban onMoveHandler={onMoveHandler} data={kanban} />
+    {error !== "" && <h5>{error}</h5>}
+    {error === "" && <Kanban onMoveHandler={onMoveHandler} data={kanban} />}
   </div>);
 }
 
