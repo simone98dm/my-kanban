@@ -1,3 +1,7 @@
 .List {
   background-color: #f7f8f9;
 }
+
+.List .card-body {
+  overflow-y: scroll;
+}
