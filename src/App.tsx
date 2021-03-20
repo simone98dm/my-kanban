@@ -30,26 +30,26 @@ const App = () => {
   }
 
   useEffect(() => {
-    // if (Object.keys(kanban).length !== 0) {
-    //   localStorage.setItem('kanban', JSON.stringify(kanban));
-    // }
+    if (Object.keys(kanban.lists).length !== 0) {
+      localStorage.setItem('kanban', JSON.stringify(kanban));
+    }
   }, [kanban])
 
 
   useEffect(() => {
-    // const localKanban = localStorage.getItem('kanban');
-    // if (localKanban) {
-    //   setKanban(JSON.parse(localKanban));
-    // } else {
-    // }
-    getUserBoard()
-      .then((result: any) => {
-        setKanban(result);
-      }).catch((err: string) => {
-        setError(err);
-      }).finally(() => {
-        // end loading
-      });
+    const localKanban = localStorage.getItem('kanban');
+    if (localKanban) {
+      setKanban(JSON.parse(localKanban));
+    } else {
+      getUserBoard()
+        .then((result: any) => {
+          setKanban(result);
+        }).catch((err: string) => {
+          setError(err);
+        }).finally(() => {
+          // end loading
+        });
+    }
   }, [])
 
   return (<div className="App">
