@@ -14,7 +14,7 @@ const Kanban = (props: KanbanProps) => {
           {props.data.lists
             && props.data.lists.map((list, i) => (
               <div className="column col-3" key={`list${i}`}>
-                <List cards={list} onMoveHandler={props.onMoveHandler} />
+                <List cards={list} onMoveHandler={props.onMoveHandler} onTitleChange={props.onTitleChange} />
               </div>)
             )}
         </DndProvider>
@@ -25,6 +25,8 @@ const Kanban = (props: KanbanProps) => {
 interface KanbanProps {
   data: IKanban;
   onMoveHandler: any;
+  onTitleChange: any;
+
 }
 
 export default Kanban;
