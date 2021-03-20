@@ -11,21 +11,15 @@ const App = () => {
 
   const onMoveHandler = (item: any, id: number) => {
     let newKanban = kanban;
-    for (let i = 0; i < newKanban.lists.length; i++) {
-      const cards = kanban.lists[i];
-      for (let k = 0; k < cards.list.length; k++) {
-        const card = cards.list[k];
-        if (card.id === item.card.id) {
-          cards.list.splice(k, 1);
-          console.log(`remove '${card.title}' from ${cards.name}`);
-        }
-      }
 
-      if (cards.id === id) {
-        cards.list.push(item.card);
-        console.log(`add '${item.card.title}' in ${cards.name}`);
+    for (let i = 0; i < newKanban.lists.length; i++) {
+      const cards = kanban.lists[i].list.filter(x => x.id !== item.card.id);
+      newKanban.lists[i].list = cards;
+      if (newKanban.lists[i].id === id) {
+        newKanban.lists[i].list.push(item.card);
       }
     }
+    
     setKanban({ name: kanban.name, lists: kanban.lists });
   }
 
