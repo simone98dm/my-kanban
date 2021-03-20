@@ -1,0 +1,38 @@
+[
+  {
+    "name": "La mia bacheca",
+    "lists": [
+      {
+        "name": "Todo",
+        "list": [
+          { "id": 1, "title": "Create layout", "description": "" },
+          { "id": 2, "title": "Create project", "description": "" },
+          { "id": 3, "title": "Deploy in heroku", "description": "" },
+          { "id": 4, "title": "Hack the world", "description": "" }
+        ],
+        "id": 0
+      },
+      {
+        "name": "Progress",
+        "list": [
+          { "id": 5, "title": "Completing this project", "description": "" },
+          { "id": 6, "title": "print \"Hello, World!\"", "description": "" }
+        ],
+        "id": 1
+      },
+      {
+        "name": "To Check",
+        "list": [
+          { "id": 7, "title": "The water on the gas", "description": "" },
+          { "id": 8, "title": "Did I close the main door?", "description": "" }
+        ],
+        "id": 2
+      },
+      {
+        "name": "Completed",
+        "list": [{ "id": 9, "title": "Have an idea!", "description": "" }],
+        "id": 3
+      }
+    ]
+  }
+]
