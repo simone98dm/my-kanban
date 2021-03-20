@@ -23,7 +23,9 @@ const List = (props: ListProps) => {
           {props.cards.list
             && props.cards.list.map((card, i) => (
               <div className="col-12" key={`card${i}`}>
-                <Card item={card} />
+                <Card 
+                  onTitleChange={props.onTitleChange}
+                  item={card} />
               </div>)
             )}
         </div>
@@ -34,6 +36,7 @@ const List = (props: ListProps) => {
 interface ListProps {
   cards: IList;
   onMoveHandler: any;
+  onTitleChange: any;
 }
 
 export default List;

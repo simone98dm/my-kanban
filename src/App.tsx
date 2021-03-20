@@ -52,9 +52,25 @@ const App = () => {
     }
   }, [])
 
+  const onTitleChange = (item: any) => {
+    let newKanban = kanban;
+
+    for (let i = 0; i < newKanban.lists.length; i++) {
+      const cards = kanban.lists[i];
+      for (let k = 0; k < cards.list.length; k++) {
+        const card = cards.list[k];
+        if (card.id === item.id) {
+          card.title = item.newTitle;
+        }
+      }
+    }
+
+    setKanban({ name: kanban.name, lists: kanban.lists });
+  }
+
   return (<div className="App">
     {error !== "" && (<h5>{error}</h5>)}
-    {error === "" && (<Kanban onMoveHandler={onMoveHandler} data={kanban} />)}
+    {error === "" && (<Kanban onMoveHandler={onMoveHandler} data={kanban} onTitleChange={onTitleChange} />)}
   </div>);
 }
 
