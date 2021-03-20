@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/index.css","webpack://src/App.css","webpack://src/components/List/List.css"],"names":[],"mappings":"AAAA,aACI,WACJ,CCFA,KACI,aACJ,CCFA,MACE,wBACF","file":"main.b65c6f27.chunk.css","sourcesContent":[".full-height {\r\n    height: 90vh;\r\n}",".App {\r\n    margin: 0 10px\r\n}\r\n",".List {\r\n  background-color: #f7f8f9;\r\n}\r\n"]}
