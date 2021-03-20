@@ -5,10 +5,9 @@ import Kanban from './components/Kanban/Kanban';
 import { IKanban } from './models/Kanban';
 
 const App = () => {
-  const [kanban, setKanban] = useState({} as IKanban);
+  const [kanban, setKanban] = useState({ name: '', lists: [] } as IKanban);
 
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(true);
 
   const onMoveHandler = (item: any, id: number) => {
     let newKanban = kanban;
@@ -18,40 +17,44 @@ const App = () => {
         const card = cards.list[k];
         if (card.id === item.card.id) {
           cards.list.splice(k, 1);
-          console.log(`remove ${card.id} from ${cards.name}`);
+          console.log(`remove '${card.title}' from ${cards.name}`);
         }
       }
 
       if (cards.id === id) {
         cards.list.push(item.card);
-        console.log(`add ${item.card.id} in ${cards.name}`);
+        console.log(`add '${item.card.title}' in ${cards.name}`);
       }
     }
-    setKanban(newKanban);
+    setKanban({ name: kanban.name, lists: kanban.lists });
   }
 
   useEffect(() => {
-    console.log(kanban)
+    // if (Object.keys(kanban).length !== 0) {
+    //   localStorage.setItem('kanban', JSON.stringify(kanban));
+    // }
   }, [kanban])
 
+
   useEffect(() => {
-
-    setLoading(true);
-
+    // const localKanban = localStorage.getItem('kanban');
+    // if (localKanban) {
+    //   setKanban(JSON.parse(localKanban));
+    // } else {
+    // }
     getUserBoard()
       .then((result: any) => {
         setKanban(result);
       }).catch((err: string) => {
         setError(err);
       }).finally(() => {
-        setLoading(true)
+        // end loading
       });
-
   }, [])
 
   return (<div className="App">
-    {error !== "" && <h5>{error}</h5>}
-    {error === "" && <Kanban onMoveHandler={onMoveHandler} data={kanban} />}
+    {error !== "" && (<h5>{error}</h5>)}
+    {error === "" && (<Kanban onMoveHandler={onMoveHandler} data={kanban} />)}
   </div>);
 }
 
